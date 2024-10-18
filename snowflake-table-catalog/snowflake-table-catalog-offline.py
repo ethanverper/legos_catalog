@@ -5,6 +5,7 @@ import io
 import requests
 #import streamlit.components.v1 as components
 st.set_page_config(layout="wide")
+
 # Initialize connection.
 # Uses st.experimental_singleton to only run once.
 if 'gs_URL' not in st.session_state:
@@ -26,7 +27,62 @@ st.title('Project Table Catalog')
 
 def local_css(file_name):
     with open(file_name) as f:
-        st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+        st.markdown(
+    """
+    <style>
+    .column {
+  float: left;
+  width: 33.33%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+.kpi.number {
+  font-size: 2rem;
+  text-align: center;
+  color: rgb(90, 90, 90);
+}
+
+.kpi.text{
+  font-size: 1rem;
+  text-align: center;
+  color: rgb(90, 90, 90);
+  padding-top: 10px;
+}
+
+.tablebackground{
+  background-color: #BAD2DE !important;
+}
+
+
+.viewbackground{
+background-color: #CBE2DA !important;
+}
+
+
+.mvbackground{
+background-color: #E5F0EC !important;
+}
+
+
+.smallheader{
+    font-size: small !important;
+}
+
+#my-container {
+  height: 100vh;
+  width: 100%;
+}
+    </style>
+    """, 
+    unsafe_allow_html=True
+)
 
 def remote_css(url):
     st.markdown(f'<link href="{url}" rel="stylesheet">',
@@ -252,7 +308,7 @@ directores = {"Honda": {"nombre_director" : "Garland Jeff", "nombre_empleados" :
              "Mulag": {"nombre_director" : "Alan Gold", "nombre_empleados" : "Alan Gold"},
              "SIKORSKI": {"nombre_director" : "Alex", "nombre_empleados" : "Hector Manuel"},
              "Airbus": {"nombre_director": "Lorena Gutierrez", "nombre_empleados": "Oscar Soto"},
-             "Katmerciller": {"nombre_director" : "José de Jesús", "nombre_empleados": "Astryd"},
+             "Karmetciller": {"nombre_director" : "José de Jesús", "nombre_empleados": "Astryd"},
              "Brittania": {"nombre_director" : "Aldair", "nombre_empleados" : "Sandra Daniela"},
              "TDC": {"nombre_director" : "Jorge", "nombre_empleados" : "Miguel Suárez"},
              "UD Trucks": {"nombre_director" : "Miriam García", "nombre_empleados" : "Ale Chapa"},
